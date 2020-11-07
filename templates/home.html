@@ -4,12 +4,14 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+    <h2>Profile</h2>
     Hi {{ user.username }}!
     <p><a href="{% url 'password_change' %}">Change Password</a></p>
     <p><a href="{% url 'logout' %}">Log Out</a></p>
+    <a href="{% url 'sport_events:sport_events_home' %}">Go to Sport Events</a>
 {% else %}
-    <p>Log in to get started</p>
+    <p>Log in / Sign Up to get started</p>
     <a href="{% url 'login' %}">Log In</a><br>
-    <a href="{% url 'signup' %}">Sign Up</a>
+    <a href="{% url 'users:signup' %}">Sign Up</a> <br>
 {% endif %}
 {% endblock content %}

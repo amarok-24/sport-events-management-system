@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        {{object.name}}<br> 
+        {{object.sport}}<br> 
+        {{object.fee}}<br> 
+        {{object.eligible_user_type}}<br> 
+        {{object.status}}<br>
+        <br><br>
+
+
+        {% if object.status|stringformat:"s" == 'ACTIVE' %}
+
+            {% if is_registered %}
+                <p>Registered</p>
+            {% elif not user.is_staff%}
+                <a href="{% url 'sport_events:register' object.pk %}">Register</a>
+            {% endif %}
+
+        {% elif object.status|stringformat:"s" == 'CLOSED' %}
+
+            Round {{ object.curr_round }}
+            <table width="100%">
+                <tr>
+                    <th>Participant 1</th>
+                    <th>Participant 2</th>
+                    <th>Winner</th>
+                    <th></th>
+                </tr>
+                
+                {% for match in matches %}
+                <tr>
+                    <td>{{ match.participant_1.username }}</td>
+                    <td>{{ match.participant_2.username }}</td>
+                    <td>{{ match.winner.username }}</td>
+                    {% if user.is_staff %}
+                        <td><a href="{% url 'sport_events:match_update' match.pk %}">Update</a></td>                    
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table> 
+
+            {% if user.is_staff %}
+                <a href="{% url 'sport_events:schedule' object.pk %}">Schedule Round</a>            
+            {% endif %}
+
+        {% elif object.status|stringformat:"s" == 'COMPLETED' %}
+
+            Winner : {{ winner.username }}
+
+        {% endif %}
+
+
+
+</body>
+</html>

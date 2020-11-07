@@ -29,5 +29,5 @@ urlpatterns = [
     # and setting the template_name right in our url pattern
     path('', TemplateView.as_view(template_name='home.html'),name='home'), 
 
-    #path('sport_events/',include(('sport_events.urls','sport_events'),namespace='sport_events')),
+    path('sport_events/',include(('sport_events.urls','sport_events'),namespace='sport_events'), name='sport_events'),
 ]

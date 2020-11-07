@@ -17,9 +17,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 
-# from dotenv import load_dotenv
-# load_dotenv(os.path.join(BASE_DIR, '.env'))
-
 import environ
 env = environ.Env()
 # reading .env file
@@ -50,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'users',
-    #'sport_events',
+    'sport_events',
 ]
 
 MIDDLEWARE = [
@@ -144,5 +141,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
+LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Events Home</title>
+</head>
+<body>
+    
+    {% if user.is_authenticated %}
+        <p>
+            <a href="{% url 'sport_events:my_events' %}">My Events</a>
+        </p>    
+    {% endif %}
+
+    <p>
+        <a href="{% url 'sport_events:active_events' %}">Active Events</a>
+    </p>
+    <p>
+        <a href="{% url 'sport_events:closed_events' %}">Closed Events</a>
+    </p>
+    <p>
+        <a href="{% url 'sport_events:completed_events' %}">Completed Events</a>
+    </p>
+
+</body>
+</html>
